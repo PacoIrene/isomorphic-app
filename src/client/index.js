@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import {Route, Router, browserHistory} from 'react-router';
+
+import routes from './routes';
+
+// import './styles/main.scss';
+
 ReactDOM.render(
-  <h1>Hello, world1!</h1>,
+  <Router history={browserHistory}>{routes}</Router>,
   document.getElementById('root')
 );

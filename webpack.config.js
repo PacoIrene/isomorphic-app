@@ -10,8 +10,9 @@ var webpackConfig = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.NoErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin()
   ]
 };
 
@@ -38,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
           NODE_ENV: JSON.stringify('production')
         }
       }),
-      new ExtractTextPlugin("app.css"),
+      new ExtractTextPlugin('app.css'),
       new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]  
   });
@@ -53,8 +54,18 @@ if (process.env.NODE_ENV === 'production') {
         loaders: ['react-hot', 'babel?presets[]=react-hmre,presets[]=react,presets[]=es2015'],
         exclude: /node_modules/,
       },
-      { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
-      { test: /\.css$/, loader: 'style-loader!css-loader' }
+      {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
+      {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract(
+              "style",
+              "css!sass"
+          )
+      },
+      {
+        test: /\.(otf|ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'url-loader'
+      }
     ]},
     entry : [
       'webpack-hot-middleware/client',
@@ -64,10 +75,10 @@ if (process.env.NODE_ENV === 'production') {
         extensions: ['', '.js', '.jsx']
     },
     plugins : [
+      new ExtractTextPlugin('app.css'),
       new webpack.HotModuleReplacementPlugin()
     ]  
   });
-  
 }
 
 module.exports = webpackConfig;

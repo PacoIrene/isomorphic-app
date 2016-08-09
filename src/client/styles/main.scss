@@ -1,0 +1,13 @@
+@import '_reset.scss';
+
+@font-face {
+    font-family: "MainFont";
+    src: url("../font/MainFont.woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #F4F3F0;
+    font-family: 'MainFont';
+}
