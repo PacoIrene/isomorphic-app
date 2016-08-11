@@ -14,9 +14,9 @@ export default class Head extends Component{
             <header className="header">
                 <h1>PacoIrene</h1>
                 <ul>
-                    <li><Link to='/' className="add-tem-link">Blog</Link></li>
-                    <li><Link to='/Blog' className="add-tem-link">Thinking</Link></li>
-                    <li onClick={this.readDetail.bind(this)}>About</li>
+                    <li><Link to='/'>Blog</Link></li>
+                    <li><Link to='/thinking'>Thinking</Link></li>
+                    <li><Link to='/about'>About</Link></li>
                 </ul>
             </header>
         );

@@ -56,11 +56,8 @@ if (process.env.NODE_ENV === 'production') {
       },
       {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
       {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract(
-              "style",
-              "css!sass"
-          )
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.(otf|ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -75,7 +72,6 @@ if (process.env.NODE_ENV === 'production') {
         extensions: ['', '.js', '.jsx']
     },
     plugins : [
-      new ExtractTextPlugin('app.css'),
       new webpack.HotModuleReplacementPlugin()
     ]  
   });

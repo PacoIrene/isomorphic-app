@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Head from '../component/Head/Head';
+import Head from './component/Head/Head';
 
 export default class App extends Component {
   render() {
