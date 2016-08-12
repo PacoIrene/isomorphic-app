@@ -3,6 +3,8 @@ import path from 'path';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
+import moment from 'moment';
+
 import Blog from '../models/blog';
 
 import webpack from 'webpack';
@@ -46,7 +48,7 @@ app.all('*', (req, res, next) => {
     next();
 });
 
-app.get('/blogs', (req, res, next) => {
+app.get('/api/blogs', (req, res, next) => {
     const pageSize = 10;
     const page = req.query.page || 1;
 
@@ -61,12 +63,12 @@ app.get('/blogs', (req, res, next) => {
     );
 });
 
-app.get('/blogs/:id', (req, res, next) => {
+app.get('/api/blogs/:id', (req, res, next) => {
     const id = req.params.id;
 
     Blog.findById(id).then(
         blog => {
-            res.send(blog);
+            res.send(blog ? blog : {});
         },
         err => {
             next(err);
@@ -74,7 +76,7 @@ app.get('/blogs/:id', (req, res, next) => {
     );
 });
 
-app.put('/blogs/:id', (req, res, next) => {
+app.put('/api/blogs/:id', (req, res, next) => {
     const id = req.params.id;
     let title = req.query.title;
     let content = req.query.content;
@@ -87,7 +89,7 @@ app.put('/blogs/:id', (req, res, next) => {
     });
 });
 
-app.delete('/blogs/:id', (req, res, next) => {
+app.delete('/api/blogs/:id', (req, res, next) => {
     const id = req.params.id;
 
     Blog.findByIdAndRemove(id).then(
@@ -102,7 +104,7 @@ app.delete('/blogs/:id', (req, res, next) => {
     );
 });
 
-app.post('/blogs', (req, res, next) => {
+app.post('/api/blogs', (req, res, next) => {
     let title = req.query.title;
     let date = new Date();
     let content = req.query.content;

@@ -15,7 +15,6 @@ export default class Head extends Component{
                 <h1>PacoIrene</h1>
                 <ul>
                     <li><Link to='/'>Blog</Link></li>
-                    <li><Link to='/thinking'>Thinking</Link></li>
                     <li><Link to='/about'>About</Link></li>
                 </ul>
             </header>
